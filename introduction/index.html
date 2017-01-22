@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>vue.js tutorial</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/index.html">vue.js guide page</a>
+    
+    <div id="app">
+        {{ message }}
+    </div>
+    
+    <div id="app-2">
+        <span v-bind:title="message">
+            Hover your mouse over me for a few seconds to see my dynamically bound title!
+        </span>
+    </div>
+
+    <div id="app-3">
+        <p v-if="seen">Now you see me</p>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./introduction.js"></script>
+</body>
+</html>
