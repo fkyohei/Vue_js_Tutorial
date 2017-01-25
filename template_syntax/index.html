@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>template syntax</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/index.html">vue.js guide page</a>
+
+    <!-- 【Text】 -->
+    <!-- この書き方だとmsgは何度も書き換え(変更反映)が可能 -->
+    <span>Message: {{ msg }}</span>
+    <!-- この書き方だとmsgは初回だけ反映される（書き換え不可） -->
+    <span v-once>This will never change: {{ msg }}</span>
+
+    <!-- 【HTML】 -->
+    <!-- plain textではなく、HTMLを扱うためにはこの書き方 -->
+    <!-- データバインディングは無視される(plain htmlのみ) -->
+    <div v-html="rawHtml"></div>
+
+    <!-- 【Attributes】 -->
+    <!-- バインディングする場合、HTML属性をそのまま使うことができないため、次のような書き方をする -->
+    <div v-bind:id="dynamicId"></div>
+    <!-- booleanの属性も使用可能。falseのとき属性は削除される -->
+    <button v-bind:disabled="someDynamicCondition">Button</button>
+
+    <!-- 【Using Javascript Expression】 -->
+    <!-- javascriptの表現方法も使用することができる -->
+    {{ number + 1 }}
+    {{ ok ? 'YES' : 'NO' }}
+    {{ message.split('').reverse().join('') }}
+    <div id="'list-' + id"></div>
+    <!-- 変数宣言や条件文(trueのみ)は使用できない -->
+    <!-- {{ var a = 1 }} -->
+    <!-- {{ if (ok) { return message } }} -->
+    <!-- この他に一部のグローバル変数（MathやDate）以外も使用することはできない -->
+
+    <!-- 【Directive】 -->
+    <!-- この例ではseenの値によって<p>を削除/挿入する -->
+    <p v-if="seen">Now you see me</p>
+
+    <!-- 【Arguments】 -->
+    <!-- いくつかのディレクティブは引数を取ることができる -->
+    <!-- 例えば、v-bindはhtml属性を反応的に更新できる -->
+    <!-- urlの値とhref属性がバインディングされる -->
+    <a v-bind:href="url"></a>
+    <!-- 例えば、v-onを使用するとDomのイベントを取れる -->
+    <a v-on:click="doSomething"></a>
+
+    <!-- 【Modifiers】 -->
+    <!-- 特別なpostfix -->
+    <!-- 例えば.prevent。e.preventDefault()がコールされる -->
+    <form v-on:submit.prevent="onSubmit"></form>
+
+    <!-- 【Filters】 -->
+    <!-- テキストフォーマットのフィルターが可能 -->
+    <!-- 二重括弧の中、v-bindの中で使用可能。(v-bindはvueの2.1系以降のみ) -->
+    <!-- パイプ（|）の後ろにフォーマットを指定（template_syntax.js参照） -->
+    {{ message | capitalize }}
+    <div v-bind:id="rawId | formatId"></div>
+    <!-- 複数フィルターをかけることも可能 -->
+    {{ message | filterA | filterB }}
+    <!-- フィルターはjavascriptの関数のため、引数を渡すことも可能 -->
+    <!-- この場合、js側は第一引数がmessage、第二引数が'arg1'、第三引数が'arg2'となる -->
+    {{ message | filterA('arg1', 'arg2') }}
+
+    <!-- 【ShortHands】 -->
+    <!-- v-bindやv-onは簡略にして書くことが可能 -->
+    <!-- v-bindを普通に書く -->
+    <a v-bind:href="url"></a>
+    <!-- 簡略にして書く -->
+    <a :href="url"></a>
+    <!-- v-onを普通に書く -->
+    <a v-on:click="doSomething"></a>
+    <!-- 簡略にして書く -->
+    <a @click="doSomething"></a>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./template_syntax.js"></script>
+</body>
+</html>
