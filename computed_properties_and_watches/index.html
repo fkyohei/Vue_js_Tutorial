@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Computed Properties and Watchers</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/computed.html">vue.js guide page</a>
+
+    <!-- 書き方としては間違ってないが、直接ロジックを書き込むことでテンプレートが膨らんでしまう例 -->
+    <div id="example1">
+        {{ message.split('').reverse().join('') }}
+    </div>
+
+    <!-- テンプレートからロジックを排除する -->
+    <!-- computed property を使うことで、同一id配下で同じ処理を2度以上使う場合にも無駄が省ける -->
+    <div id="example2">
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    </div>
+
+    <!-- computed propertyはmethodでも同じを得ることができる -->
+    <div id="example3">
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage() }}"</p>
+    </div>
+    <!-- computed propertyとmethodは一見同じように見えるが、実際は違っている -->
+    <!-- computed propertyはキャッシュ機能があり、messageに変更がない場合は何度呼び出してもロジックは実行されずにキャッシュの結果が返される。 -->
+    <!-- 一方、methodの場合は複数回のアクセスをすれば、値に変化がなくてもアクセス毎に再実行される -->
+    <!-- この場合、キャッシュが利用される -->
+    <div id="example4">
+        <p>Now: {{ now }}</p>
+        <p>Now: {{ now }}</p>
+    </div>
+    <!-- この場合、都度実行される -->
+    <div id="example5">
+        <p>Now: {{ now() }}</p>
+        <p>Now: {{ now() }}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
