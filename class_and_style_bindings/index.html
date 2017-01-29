@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>class and style bindings</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/class-and-style.html">vue.js</a>
+
+    <!-- 【Binding HTML Class】 -->
+    <!-- classをバインディングすることが可能(isActiveがtrueのときにactiveがクラスに設定される) -->
+    <div v-bind:class="{ active: isActive }"></div>
+    <!-- 通常のclass指定とバインディングしたclassを設定することも可能 -->
+    <div id="example1" class="static"
+         v-bind:class="{ active: isActive, 'text-danger': hasError }">
+    </div>
+    <!-- インラインである必要はない -->
+    <div id="example2" v-bind:class="classObject"></div>
+    <!-- Computed propertyを使用することも可能(この形が汎用性がある) -->
+    <div id="example3" v-bind:class="classObject"></div>
+    <!-- classリストの配列を使用することもできる -->
+    <div id="example4" v-bind:class="[activeClass, errorClass]"></div>
+    <!-- 条件を付ける場合は三項演算子を使用して指定する -->
+    <div v-bind:class="[isActive ? activeClass : ''], errorClass]"></div>
+    <!-- オブジェクト公文を使用した書き方で同じ指定ができる -->
+    <div v-bind:class="[{active: isActive}, errorClass]"></div>
+
+    <!-- カスタムコンポーネントでclass属性を使用すると、ルート要素に追加される。既存クラスの上書きはされない -->
+    <my-component id="example5" class="baz boo"></my-component>
+    <my-component2 id="example6" v-bind:class="{ active: isActive }"></my-component2>
+
+    <!-- 【Binding inline style】 -->
+    <!-- styleもバインディングすることができる。CSSのように書ける -->
+    <div id="example7" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+    <!-- class同様この書き方も可能 -->
+    <div id="example8" v-bind:style="styleObject"></div>
+    <!-- computed propertyや配列も可能 -->
+
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
