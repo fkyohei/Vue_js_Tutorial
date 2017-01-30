@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title>Conditional Rendering</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/conditional.html">vue.js</a>
+
+    <!-- 下記のようなことをテンプレートに書きたい場合 -->
+    <!--
+    {{#if ok}}
+        <h1>Yes</h1>
+    {{/if}
+    -->
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+
+    <!-- グループ（塊）に対しても条件をつけることができる -->
+    <template v-if="ok">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </template>
+    <!-- このようなことも可能 -->
+    <div v-if="Math.random() > 0.5">
+        Now you see me.
+    </div>
+    <div v-else>
+        Now you don't.
+    </div>
+
+    <!-- else ifも使える -->
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <div v-else>
+        Not A/B/C
+    </div>
+
+    <!--- loginTypeを切り替えてinputを切り替えたりする使い方ができる -->
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address">
+    </template>
+    <!-- ただし、上記のコードだとinputが再利用のため、入力値が引き継がれてしまう -->
+    <!-- key属性を使うと、同じフォームでもユニークにできる -->
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input">
+    </template>
+    <!-- label要素はkey属性を持たないため、再利用される -->
+
+    <!-- v-showも表示の切り替えができる。使い方はほぼおなじ-->
+    <h1 v-show="ok">Hello!</h1>
+    <!-- cssのdisplayを切り替えるのと同じく、DOMのレンダリングはされる -->
+
+    <!-- v-ifはDOMのレンダリングもされず、v-showはdisplayの値をトグルするだけ -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</body>
+</html>
