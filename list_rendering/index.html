@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>vue.js tutorial</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/index.html">vue.js guide page</a>
+    
+    <ul id="example-1">
+        <li v-for="item in items">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="example-2">
+        <li v-for="(item, index) in items">
+            {{ parentMessage }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+    <!-- v-forブロックは親スコープのプロパティを使用することができる. また、第２引数でindexを得る事ができる -->
+    <!-- また、inの代わりにofを使うこともできる -->
+    <!-- <li v-for="item of items"> -->
+    
+    <!-- templateタグを使用して、複数要素のブロックをレンダリングすることもできる -->
+    <ul>
+        <template v-for="item in items">
+            <li>{{ item.msg }}</li>
+            <li class="divider"></li>
+        </template>
+    </ul>
+
+    <!-- オブジェクトプロパティも使用可能 -->
+    <ul id="repeat-object" class="demo">
+        <li v-for="value in object">
+            {{ value }}
+        </li>
+    </ul>
+    <!-- keyを得ることや、indexを得ることもできる -->
+    <ul id="repeat-object2" class="demo">
+        <li v-for="(value, key) in object">
+            {{ key }} : {{ value }}
+        </li>
+    </ul>
+    <ul id="repeat-object3" class="demo">
+        <li v-for="(value, key, index) in object">
+            {{ key }} : {{ value }} : {{ index }}
+        </li>
+    </ul>
+
+    <!-- いわゆる普通のfor文のようなものもある -->
+    <div id="range">
+        <span v-for="n in 10">{{n}}</span>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
