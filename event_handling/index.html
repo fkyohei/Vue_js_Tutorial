@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Event Handling</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/events.html">vue.js</a>
+
+    <!-- v-onを使用してDOMのイベントを指定し、トリガーで何らかのjavascriptを実行できる -->
+    <div id="example-1">
+        <button v-on:click="counter += 1">Add 1</button>
+        <p>The button above has been clicked {{ counter }} times</p>
+    </div>
+
+    <!-- v-onは呼び出したい任意のメソッド名を指定することも可能 -->
+    <div id="example-2">
+        <button v-on:click="greet">Greet</button>
+        <!-- greetは任意のメソッド名 -->
+    </div>
+
+    <!-- v-onでメソッド名を指定するのではなく、インラインのjavascript文で実行することも可能 -->
+    <div id="example-3">
+        <button v-on:click="say('hi')">Say hi</button>
+        <button v-on:click="say('what')">Say what</button>
+        <!-- インラインを使用している場合も元のDOMイベントを使いたい場合があるが、特別な変数を引数に与えることで実現が可能 -->
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+    </div>
+
+    <!-- event.preventDefault()やevent.stopPropagation()はよく使用されるが、それをより簡単に実行することができる -->
+    <!-- clickイベントがとまる -->
+    <a v-on:click.stom="doThis"></a>
+    <!-- 送信イベントはページをリロードしない(?) -->
+    <form v-on:submit.prevent="onSubmit"></form>
+    <!-- チェーンも可能 -->
+    <a v-on:click.stop.prevent="doThat"></a>
+    <form v-on:submit.prevent></form>
+    <!-- イベントリスナーを追加するときにだけキャプチャモードを使用する -->
+    <div v-on:click.capture="doThis">...</div>
+    <!-- 自身のイベントだけのトリガーハンドラ -->
+    <div v-on:click.self="doThat">...</div>
+    <!-- 1度だけ -->
+    <a v-on:click.once="doThis"></a>
+
+    <!-- キーボードイベントも使用できる -->
+    <!-- キーコード13が押された場合に実行される -->
+    <input v-on:keyup.13="submit">
+    <!-- 上記と同義 -->
+    <input v-on:keyup.enter="submit">
+    <!-- 短縮形 -->
+    <input @keyup.enter="submit">
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
