@@ -1,0 +1,107 @@
+<html>
+<head>
+    <title>Form Input Bindings</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/forms.html">vue.js</a>
+   
+    <div id="example-1">
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+    </div>
+    <div id="example-2">
+        <span>Multiline message is:</span>
+        <p style="white-space: pre">{{ message }}</p>
+        <br>
+        <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    </div>
+
+    <div id="example-3">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+    </div>
+    <div id="example-4">
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+
+    <div id="example-5">
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+    </div>
+
+    <div id="example-6">
+        <select v-model="selected">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+    <div id="example-7">
+        <select v-model="selected" multiple>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+
+    <div id="example-8">
+        <select v-model="selected">
+            <option v-for="option in options" v-bind:value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+
+    <!-- チェックした時にpickedの値がAとなる -->
+    <input type="radio" v-model="picked" value="A">
+    <!-- チェック状態がtoggleの値となる(true, false) -->
+    <input type="checkbox" v-model="toggle">
+    <!-- 選択した時にselectedの値がabcとなる -->
+    <select v-model="selected">
+        <option value="abc">ABC</option>
+    </select>
+    <!-- 動的に値を変えることも可能(チェックがついたときはa, ついていないときはb) -->
+    <input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+    <!-- チェックした時にpickがa -->
+    <input type="radio" v-model="pick" v-bind:value="a">
+    <!-- 文字列以外も扱える(例えばオブジェクト) -->
+    <select v-model="selected">
+        <option v-bind:value="{ number: 123}">123</option>
+    </select>
+
+    <!-- inputイベントではなくchangeイベントで発動させる -->
+    <div id="example-9">
+        <input v-model.lazy="msg">
+        <span>Msg: {{ msg }}</span>
+    </div>
+    <!-- numberの自動キャストをしたり -->
+    <div id="example-10">
+        <input v-model.number="age" type="number">
+        <span>Age: {{ age }}</span>
+    </div>
+    <!-- 自動でトリムしたり -->
+    <div id="example-11">
+        <input v-model.trim="msg">
+        <span>Msg: {{ msg }}</span>
+    </div>
+
+
+    
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
