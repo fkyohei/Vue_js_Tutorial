@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Components</title>
+</head>
+<body>
+    <a href="https://vuejs.org/v2/guide/comonents.html">vue.js</a>
+   
+    <div id="example">
+        <my-component></my-component>
+    </div>
+    <div id="example2">
+        <my-component2></my-component2>
+    </div>
+    <!-- 特定の要素は使用できるタグに制限があるため、書き方を変える必要がある -->
+    <table>
+        <my-row>...</my-row>
+    </table>
+    <!-- 上は下のようにすると良い -->
+    <table>
+        <tr is="my-row"></tr>
+    </table>
+
+    <div id="example3">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+    </div>
+
+    
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
