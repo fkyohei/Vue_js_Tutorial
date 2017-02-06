@@ -26,6 +26,25 @@
         <simple-counter></simple-counter>
     </div>
 
+    <div id="example4">
+        <child message="hello"></child>
+    </div>
+    <div id="example5">
+        <child my-message="hello2"></child>
+    </div>
+
+    <div id="example6">
+        <input v-model="parentMsg">
+        <br>
+        <child v-bind:my-message="parentMsg"></child>
+        <!-- この書き方もできる -->
+        <!--        <child :my-message="parentMsg"></child>   -->
+    </div>
+
+    <!-- この書き方だと文字列として扱われる -->
+    <comp some-prop="1"></comp>
+    <!-- 数値として渡したい場合はv-bindを使用する -->
+    <comp v-bind:some-prop="1"></comp>
     
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="./main.js"></script>
