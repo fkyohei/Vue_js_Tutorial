@@ -45,8 +45,38 @@
     <comp some-prop="1"></comp>
     <!-- 数値として渡したい場合はv-bindを使用する -->
     <comp v-bind:some-prop="1"></comp>
+
+    <div id="counter-event-example">
+        <p>{{ total }}</p>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+    </div>
+    <!-- nativeイベントを使いたいときはこう書く -->
+    <my-component v-on:click.native="doSomething"></my-component>
+
+    <!-- フォームの場合はこう書いていた -->
+    <input v-model="something">
+    <!-- これはこう書くのと同じ意味 -->
+    <input v-bind:value="something" v-on:input="something = $event.target.value">
+    <!-- コンポーネントの場合はこう -->
+    <custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+    <!-- コンポーネントの場合はこう実現する -->
+    <div id="form-example">
+        <currency-input v-model="price"></currency-input>
+    </div>
+
+    <!-- 実例。こんなものが作れる -->
+    <div id="app">
+        <currency-input2 label="Price" v-model="price"></currency-input2>
+        <currency-input2 label="Shipping" v-model="shipping"></currency-input2>
+        <currency-input2 label="Handling" v-model="handling"></currency-input2>
+        <currency-input2 label="Discount" v-model="discount"></currency-input2>
+
+        <p>Total: {{ total }}</p>
+    </div>
     
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
     <script src="./main.js"></script>
 </body>
 </html>
