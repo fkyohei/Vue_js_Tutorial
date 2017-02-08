@@ -74,7 +74,108 @@
 
         <p>Total: {{ total }}</p>
     </div>
+
+    <!-- スコープに関して -->
+    <!-- これは動かない -->
+    <child-component v-show="someChildProperty"></child-component>
+    <!-- こっちで書く -->
+    <div id="example7">
+        <child-component></child-component>
+    </div>
     
+    <!-- これと -->
+    <div>
+        <h2>I'm the child title</h2>
+        <slot>
+            This will only be displayed if there is no content to be distributed.
+        </slot>
+    </div>
+    <!-- これで -->
+    <div>
+        <h1>I'm the parent title</h1>
+        <my-component>
+            <p>This is some original content</p>
+            <p>This is some more original</p>
+        </my-component>
+    </div>
+    <!-- こうなる -->
+    <div>
+        <h1>I'm the parent title</h1>
+        <div>
+            <h2>I'm the child title</h2>
+            <p>This is some original content</p>
+            <p>This is some more original</p>
+        </div>
+    </div>
+
+    <!-- 複数slotがあるとき、名前をつけることができる -->
+    <!-- これと -->
+    <div class="container">
+        <header>
+            <slot name="header"></slot>
+        </header>
+        <main>
+            <slot></slot>
+        </main>
+        <footer>
+            <slot name="footer"></slot>
+        </footer>
+    </div>
+    <!-- これで -->
+    <app-layout>
+        <h1 slot="header">Here might be a page title</h1>
+
+        <p>A paragraph for the main content.</p>
+        <p>And another one.</p>
+
+        <p slot="footer">Here's some content info</p>
+    </app-layout>
+    <!-- こうなる -->
+    <div class="container">
+        <header>
+            <h1>Here might be a page title</h1>
+        </header>
+        <main>
+            <p>A paragraph for the main content.</p>
+            <p>And another one.</p>
+        </main>
+        <footer>
+            <p>Here's some content info</p>
+        </footer>
+    </div>
+
+    <!-- これと -->
+    <div class="child">
+        <slot text="hello from child"></slot>
+    </div>
+    <!-- これで -->
+    <div class="parent">
+        <child>
+            <template scope="props">
+                <span>hello from parent</span>
+                <span>{{ props.text }}</span>
+            </template>
+        </child>
+    </div>
+    <!-- こうなる -->
+    <div class="parent">
+        <div class="child">
+            <span>hello from parent</span>
+            <span>hello from child</span>
+        </div>
+    </div>
+
+    <!-- こんな組み合わせもできる -->
+    <my-awesome-list :items="items">
+        <template slot="item" scope="props">
+            <li class="my-fancy-item">{{ props.text }}</li>
+        </template>
+    </my-awesome-list>
+    <ul>
+        <slot name="item" v-for="item in items" :test="item.text"></slot>
+    </ul>
+
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
     <script src="./main.js"></script>

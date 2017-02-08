@@ -244,3 +244,16 @@ bus.$emit('id-selected', 1)
 bus.$on('id-selected', function(id) {
     // hogehoge
 })
+
+Vue.component('child-component', {
+    template: '<div v-show="someChildProperty">Child</div>',
+    data: function() {
+        return {
+            someChildProperty: true
+            // someChileProperty: false   // これで消える
+        }
+    }
+})
+new Vue({
+    el: '#example7'
+})
