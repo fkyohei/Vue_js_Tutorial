@@ -257,3 +257,29 @@ Vue.component('child-component', {
 new Vue({
     el: '#example7'
 })
+
+// 1つのコンポーネントの内容を動的に変更することができる
+var vm = new Vue({
+    el: '#example8',
+    data: {
+        // currentView: 'home'
+        currentView: 'posts'
+        // currentView: 'archive'
+    },
+    components: {
+        home: { template: '<p>home</p>' },
+        posts: { template: '<p>posts</p>' },
+        archive: { template: '<p>archive</p>' }
+    }
+})
+// Object変数を使用することもできる
+// var Home = {
+//      tempate: '<p>homge</p>'
+// }
+// var vm = new Vue({
+//      el: '#example8',
+//      data: {
+//          currentView: Home
+//      }
+// })
+
