@@ -283,3 +283,30 @@ var vm = new Vue({
 //      }
 // })
 
+Vue.component('user-profile', {
+    template: '<p>user profile</p>'
+})
+var parent = new Vue({ el: '#parent' });
+// 子コンポーネントにアクセスする場合は$refsを使用する
+var child = parent.$refs.profile
+
+// コンポーネントはfactory functionを使用し、必要な時にロードするようにすることができる
+// factory functionをトリガし、再レンダリングのためにキャッシュする
+Vue.component('async-example', function(resolve, reject) {
+    setTimeout(function() {
+        // Pass the component definition to the resolve callback
+        resolve({
+            template: '<div>I am async</div>'
+        })
+    }, 100)
+})
+
+Vue.component('async-webpack-example', function(resolve) {
+    // この構文はwebpackに自動的に組み込みコードをバンドルに分割する
+    // Ajaxリクエスト時にロードされる
+    require(['./my-async-component'], resolve)
+})
+// webpack2 + ES2015の書き方だとこうも書ける
+//Vue.component('async-webpack-example',
+//    () => import('./my-async-compoent')
+//)
