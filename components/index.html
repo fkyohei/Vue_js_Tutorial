@@ -191,6 +191,14 @@
         <user-profile ref="profile"></user-profile>
     </div>
 
+    <!-- htmlは必ずkebab-caseで記述 -->
+    <kebab-cased-component></kebab-cased-component>
+    <camel-cased-component></camel-cased-component>
+    <title-cased-component></title-cased-component>
+    <!-- ただし、文字列テンプレートの場合のみ、kebab-case, camel-case, title-caseを使用することができる -->
+    <!-- slotを使用しない場合は、この書き方もできる -->
+    <my-component/>
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
     <script src="./main.js"></script>

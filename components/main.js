@@ -310,3 +310,22 @@ Vue.component('async-webpack-example', function(resolve) {
 //Vue.component('async-webpack-example',
 //    () => import('./my-async-compoent')
 //)
+
+// コンポーネントの定義はkebab-case, camel-case, title-caseのどれを使用しても良い
+// components: {
+//    'kebab-cased-component': { /* hogehoge */ },
+//    'cameCasedComponent': { /* hogehoge */ },
+//    'TitleCasedComponet': { /* hogehoge */ }
+// }
+
+// コンポーネントを再帰的にするにはnameオプションを使用する
+// グローバルで登録するときのみ自動的にnameオプションがセットされる
+// グローバルの場合は下記のようなパターン
+// Vue.component('unique-name-of-my-component', {
+//   hogehoge
+// })
+// それ以外の場合は name: hogehoge を指定する
+// 再帰的にする場合、無限ループに注意する必要がある。
+// （具体的には、最終的にfalseとなるv-ifを使用する
+
+
