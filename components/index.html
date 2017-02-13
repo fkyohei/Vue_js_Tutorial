@@ -199,6 +199,24 @@
     <!-- slotを使用しない場合は、この書き方もできる -->
     <my-component/>
 
+    <!-- コンポーネント内にテンプレートを作成したい場合、inline-templateを使用できる -->
+    <my-component inline-template>
+        <div>
+            <p>These are compiled as the component's own template.</p>
+            <p>Not parent's transclusion content.</p>
+        </div>
+    </my-component>
+    <!-- ただし、スコープがわかりづらくなるため、テンプレートオプションを使用するか、.vueファイルのテンプレート要素を使用して定義することが推奨される -->
+
+    <!-- こんな定義の仕方もある -->
+    <script type="text/x-template" id="hello-world-template">
+        <p>Hello hello hello</p>
+    </script>
+    <div id="example9">
+        <hello-world></hello-world>
+    </div>
+    <!-- ただし、非推奨 -->
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
     <script src="./main.js"></script>

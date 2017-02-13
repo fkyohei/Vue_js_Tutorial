@@ -328,4 +328,19 @@ Vue.component('async-webpack-example', function(resolve) {
 // 再帰的にする場合、無限ループに注意する必要がある。
 // （具体的には、最終的にfalseとなるv-ifを使用する
 
+Vue.component('hello-world', {
+    template: '#hello-world-template'
+})
+var example9 = new Vue({
+    el: '#example9'
+})
 
+// 静的コンテンツだけのテンプレートを使う場合、1度読み込んだらキャッシュするようにすることでより早く読み込むようにできる（v-once）
+Vue.component('terms-of-service', {
+    template: '\
+        <div v-once>\
+            <h1>Terms of Service</h1>\
+            ... a lot of content ...\
+        </div>\
+    '
+})
